@@ -3,7 +3,7 @@
     "short_name":"ToDo",
     "description":"A simple and fast task management App",
     "start_url":"/",
-    "display":"fullscreen",
+    "display":"standalone",
     "background_color":"#ffffff",
     "theme_color":"#4CAF50",
     "orientation":"portrait",
