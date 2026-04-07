@@ -1,0 +1,568 @@
+/* ==========================================
+   1. RESET & BASE STYLES
+   ========================================== */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-weight: bold;
+}
+
+:root {
+  --background: #060e20;
+  --surface-container: #0f1930;
+  --surface-container-high: #141f38;
+  --surface-container-highest: #192540;
+  --on-surface: #dee5ff;
+  --on-surface-variant: #6d758c;
+  --primary: #a1faff;
+  --primary-container: #00f4fe;
+  --on-primary-fixed: #004346;
+  --secondary: #9f8eff;
+  --tertiary: #ff6e84;
+}
+
+body {
+  font-family: "Inter", sans-serif;
+  background: radial-gradient(
+    circle at top left,
+    var(--background) 0%,
+    var(--background) 40%,
+    var(--surface-container) 100%
+  );
+  min-height: 100vh;
+  color: var(--on-surface);
+}
+
+::selection {
+  background: var(--primary-container);
+  color: #00575b;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+button {
+  cursor: pointer;
+  border: none;
+  background: none;
+}
+i {
+  font-size: 1.2rem;
+}
+
+/* ==========================================
+   2. NAVBAR
+   ========================================== */
+.navbar {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 50;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 2rem;
+  height: 64px;
+  background: rgba(6, 14, 32, 0.6);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+}
+
+.logo {
+  font-size: 1.25rem;
+  font-weight: 900;
+  color: var(--primary);
+  letter-spacing: -0.05em;
+}
+
+/* ==========================================
+   3. SIDEBAR (DESKTOP)
+   ========================================== */
+.sidebar {
+  display: none;
+  position: fixed;
+  left: 0;
+  top: 64px;
+  height: calc(100vh - 64px);
+  width: 18rem;
+  flex-direction: column;
+  padding: 1.5rem;
+  gap: 1rem;
+  background: rgba(6, 14, 32, 0.4);
+  backdrop-filter: blur(32px);
+  border-right: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+@media (min-width: 768px) {
+  .sidebar {
+    display: flex;
+  }
+}
+
+.sidebar-title {
+  font-size: 1.125rem;
+  color: var(--primary);
+  margin-bottom: 0.25rem;
+}
+.sidebar-subtitle {
+  font-size: 0.75rem;
+  color: var(--on-surface-variant);
+}
+
+.sidebar-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+.sidebar-link {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem 1rem;
+  border-radius: 0.5rem;
+  font-size: 0.875rem;
+  color: var(--on-surface-variant);
+  transition: all 0.3s;
+}
+
+.sidebar-link i {
+  color: white;
+}
+.sidebar-link:hover {
+  color: var(--on-surface);
+  background: rgba(255, 255, 255, 0.05);
+  transform: translateX(4px);
+}
+.sidebar-link.active {
+  background: rgba(161, 250, 255, 0.1);
+  color: var(--primary);
+  transform: translateX(4px);
+}
+
+.sidebar-footer {
+  margin-top: auto;
+}
+.new-list-btn {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1rem;
+  background: var(--primary);
+  color: var(--on-primary-fixed);
+  border-radius: 9999px;
+  transition:
+    opacity 0.2s,
+    transform 0.2s;
+}
+.new-list-btn:active {
+  transform: scale(0.95);
+}
+
+/* ==========================================
+   4. MAIN CONTENT & GRID
+   ========================================== */
+main {
+  padding: 6rem 1.5rem 3rem;
+}
+
+@media (min-width: 768px) {
+  main {
+    padding-left: 20rem;
+    padding-right: 3rem;
+  }
+}
+
+.page-header {
+  margin-bottom: 2.5rem;
+}
+.page-title {
+  font-size: 3rem;
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -0.025em;
+}
+.page-subtitle {
+  color: var(--on-surface-variant);
+  font-size: 1.125rem;
+}
+
+.content-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+}
+@media (min-width: 768px) {
+  .content-grid {
+    grid-template-columns: 2fr 1fr;
+  }
+}
+
+/* ==========================================
+   5. TASKS SECTION
+   ========================================== */
+.tasks-section {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+.section-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.section-title {
+  font-size: 1.25rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.title-accent {
+  width: 0.5rem;
+  height: 2rem;
+  background: var(--primary);
+  border-radius: 9999px;
+}
+.date-badge {
+  font-size: 0.875rem;
+  color: var(--primary);
+  background: rgba(161, 250, 255, 0.1);
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px;
+}
+
+.tasks-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.task-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem;
+  background: rgba(15, 25, 48, 0.7);
+  border-radius: 0.75rem;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: background 0.2s;
+  position: relative;
+}
+.task-card:hover {
+  background: var(--surface-container-high);
+}
+.task-left {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+.task-name {
+  font-size: 1rem;
+  margin-bottom: 0.25rem;
+}
+.task-time {
+  font-size: 0.8rem;
+  opacity: 0.7;
+}
+.task-decription {
+  font-size: 0.7rem;
+  opacity: 0.9;
+  margin-top: 5px;
+  font-weight: 100;
+}
+
+.task-menu {
+  color: white;
+  margin: 0 0 0 1rem;
+  font-size: 1.5rem;
+}
+.menubtn {
+  position: absolute;
+  top: 45px;
+  right: 10px;
+  background: #060e20;
+  border-radius: 6px;
+  overflow: hidden;
+  z-index: 100;
+  width: 140px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+  transition: all 0.2s ease;
+}
+.menubtn button {
+  width: 100%;
+  padding: 10px;
+  text-align: left;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: white;
+  background: transparent;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+.menubtn button:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+.menubtn i {
+  margin: 5px 8px;
+  font-size: 1rem;
+  color: white;
+}
+.menubtn .delete {
+  border: none;
+  color: red;
+}
+.hidden-menu {
+  display: none;
+}
+
+/* !done logic  */
+.done{
+  opacity: 0.5;
+  color: black;
+  background-color: greenyellow;
+}
+.done::before{
+  content: "Task Completed";
+  color: blue;
+  font-size: 2rem;
+  text-align: center;
+  margin: auto;
+  position: absolute;
+  z-index: 100;
+}
+/* ========================================================================== */
+/* 6. ASIDE PANEL (QUICK ACTIONS & UPCOMING) */
+/* ========================================================================== */
+.aside-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+.panel-title{
+  margin-bottom: 20px;
+}
+.glass-panel {
+  background: rgba(9, 19, 40, 0.7);
+  backdrop-filter: blur(20px);
+  padding: 1.5rem;
+  border-radius: 1.5rem;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+.quick-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem;
+}
+.quick-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1rem;
+  border-radius: 1rem;
+  gap: 0.5rem;
+  border: 1px solid;
+  transition: background 0.2s;
+}
+.quick-btn i {
+  color: white;
+}
+.quick-btn .label {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+}
+.quick-btn.focus-btn {
+  background: rgba(161, 250, 255, 0.1);
+  border-color: rgba(161, 250, 255, 0.2);
+  color: var(--primary);
+}
+.quick-btn.stats-btn {
+  background: rgba(255, 110, 132, 0.1);
+  border-color: rgba(255, 110, 132, 0.2);
+  color: var(--tertiary);
+}
+.quick-btn:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.upcoming-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-bottom: 5rem;
+}
+.upcoming-title{
+  margin-bottom: 20px;
+}
+.upcoming-card {
+  display: flex;
+  gap: 1rem;
+  padding: 1rem;
+  background: rgba(15, 25, 48, 0.4);
+  border-radius: 1rem;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+.date-block {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: var(--surface-container-high);
+  width: 3rem;
+  height: 3rem;
+  border-radius: 0.75rem;
+  color: var(--primary);
+}
+.date-block .month {
+  font-size: 0.75rem;
+}
+.date-block .day {
+  font-size: 1.125rem;
+}
+.upcoming-name {
+  font-size: 0.875rem;
+  margin-bottom: 0.25rem;
+}
+.upcoming-sub {
+  font-size: 0.75rem;
+  color: var(--on-surface-variant);
+}
+
+/* ==========================================
+   7. MODAL & OVERLAY
+   ========================================== */
+.overlay {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgba(5, 10, 25, 0.7);
+  backdrop-filter: blur(6px);
+  z-index: 100;
+}
+.hidden {
+  opacity: 0;
+  visibility: hidden;
+  transform: scale(0.5);
+  transition: all 0.5s ease-in-out;
+}
+.visible {
+  opacity: 1;
+  visibility: visible;
+  transform: scale(1);
+}
+.modal {
+  background: #0b132b;
+  padding: 30px;
+  width: 360px;
+  border-radius: 16px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6);
+  color: #fff;
+}
+.modal h2 {
+  text-align: center;
+  margin-bottom: 25px;
+}
+.form-group {
+  margin-bottom: 20px;
+}
+.form-group label {
+  display: block;
+  margin-bottom: 6px;
+  font-size: 14px;
+  color: #cbd5e1;
+}
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  padding: 10px;
+  border-radius: 6px;
+  border: 1px solid #2a3a5e;
+  background: #0f1a36;
+  color: #fff;
+  outline: none;
+}
+.form-group input:focus,
+.form-group textarea:focus {
+  border-color: #00e5ff;
+  box-shadow: 0 0 5px #00e5ff;
+}
+textarea {
+  resize: none;
+  height: 80px;
+}
+.actions {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 25px;
+}
+.btn {
+  padding: 10px 25px;
+  border-radius: 20px;
+  transition: transform 0.2s;
+}
+.cancel {
+  background: #1f2937;
+  color: #fff;
+}
+.submit {
+  background: linear-gradient(135deg, #00e5ff, #00bcd4);
+  color: #000;
+}
+.submit:hover {
+  transform: scale(1.05);
+}
+
+/* ==========================================
+   8. BOTTOM NAVIGATION (MOBILE)
+   ========================================== */
+.bottom-nav {
+  display: flex;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  height: 4.5rem;
+  padding: 1rem;
+  background: rgba(6, 14, 32, 0.8);
+  backdrop-filter: blur(20px);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  justify-content: space-around;
+  align-items: center;
+  z-index: 50;
+}
+@media (min-width: 768px) {
+  .bottom-nav {
+    display: none;
+  }
+}
+.navList {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--on-surface-variant);
+  font-size: 0.8rem;
+}
+.navList i {
+  color: white;
+}
+.active {
+  color: var(--primary);
+}
+.fab {
+  background: var(--primary);
+  width: 4rem;
+  height: 4rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--on-primary-fixed);
+  margin-top: -3rem;
+  font-size: 2rem;
+}

@@ -1,0 +1,202 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>MunA.ToDo</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;700;800&family=Inter:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+    <link rel="icon" href="icons/icon.ico">
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <body>
+    <nav class="navbar">
+      <span class="logo">MunA.Do</span>
+      <div class="navbar-right">
+        <i
+          class="fa-solid fa-circle-user"
+          style="color: rgb(255, 255, 255); font-size: 1.5rem"
+        ></i>
+      </div>
+    </nav>
+
+    <aside class="sidebar">
+      <div>
+        <h2 class="sidebar-title">Collections</h2>
+        <p class="sidebar-subtitle">Productivity Flow</p>
+      </div>
+      <nav class="sidebar-nav">
+        <a class="sidebar-link active" href="index.html"
+          ><i class="fa-solid fa-house"></i>Home</a
+        >
+        <a class="sidebar-link" href="complete.html"
+          ><i class="fa-solid fa-list-ul"></i>All Tasks</a
+        >
+        <a class="sidebar-link" href="#"
+          ><i class="fa-regular fa-circle-exclamation"></i>Important</a
+        >
+        <a class="sidebar-link" href="#"
+          ><i class="fa-regular fa-calendar-days"></i>Calender</a
+        >
+      </nav>
+      <div class="sidebar-footer">
+        <button class="new-list-btn" id="createBtn">
+          <span style="font-size: 20px; font-weight: bold">+</span>
+          <span>New List</span>
+        </button>
+      </div>
+    </aside>
+
+    <main>
+      <header class="page-header">
+        <h1 class="page-title">Good morning, MunA.</h1>
+        <p class="page-subtitle">
+          You have <span class="taskNo">0</span> tasks scheduled for today.
+        </p>
+      </header>
+
+      <div class="content-grid">
+        <section class="tasks-section">
+          <div class="section-header">
+            <h3 class="section-title">
+              <span class="title-accent"></span>Today's Tasks
+            </h3>
+            <p class="date-badge"></p>
+          </div>
+          <div class="tasks-list">
+            <div class="task-card">
+              <div class="task-left">
+                <div>
+                  <h4 class="task-name">Date of Birth</h4>
+                  <span class="task-time">Schedule 08/07/2004 - 00:00 am</span>
+                  <p class="task-decription">
+                    elit. Minus doloremque dolore at! ia autem quas id natus
+                    sunt totam voluptatum placeat sequi dolor?
+                  </p>
+                </div>
+              </div>
+              <button class="task-menu">&#8942;</button>
+
+              <div class="menubtn hidden-menu">
+                <button class="edit-action">
+                  <i class="fa-solid fa-pen"></i>Edit
+                </button>
+                <button class="done-action">
+                  <i class="fa-regular fa-circle-check"></i>Complete
+                </button>
+                <button class="delete-action">
+                  <i class="fa-regular fa-trash"></i>Delete
+                </button>
+              </div>
+            </div>
+            <div class="task-card">
+              <div class="task-left">
+                <div>
+                  <h4 class="task-name">Date of Birth</h4>
+                  <span class="task-time">Schedule 08/07/2004 - 00:00 am</span>
+                  <p class="task-decription">
+                    elit. Minus doloremque dolore at! ia autem quas id natus
+                    sunt totam voluptatum placeat sequi dolor?
+                  </p>
+                </div>
+              </div>
+              <button class="task-menu">&#8942;</button>
+
+              <div class="menubtn hidden-menu">
+                <button class="edit-action">
+                  <i class="fa-solid fa-pen"></i>Edit
+                </button>
+                <button class="done-action">
+                  <i class="fa-regular fa-circle-check"></i>Complete
+                </button>
+                <button class="delete-action">
+                  <i class="fa-regular fa-trash"></i>Delete
+                </button>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <aside class="aside-panel">
+          <div class="glass-panel">
+            <h3 class="panel-title">Quick Actions</h3>
+            <div class="quick-grid">
+              <button class="quick-btn focus-btn">
+                <i class="fa-regular fa-clock"></i>
+                <span class="label">Completed</span>
+              </button>
+              <button class="quick-btn stats-btn">
+                <i class="fa-solid fa-list-ul"></i>
+                <span class="label">Expired</span>
+              </button>
+            </div>
+          </div>
+          <div>
+            <h3 class="upcoming-title">Upcoming Important Task</h3>
+            <div class="upcoming-list">
+              <div class="upcoming-card">
+                <div class="date-block">
+                  <span class="month">JUN</span>
+                  <span class="day">27</span>
+                </div>
+                <div>
+                  <p class="upcoming-name">Website Launch</p>
+                  <p class="upcoming-sub">09:00 AM • Internal</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </main>
+
+    <div class="overlay hidden">
+      <div class="modal">
+        <h2>Create List</h2>
+        <div class="form-group">
+          <label>Enter New Task</label>
+          <input
+            class="task"
+            type="text"
+            placeholder="Enter the Task to add"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <label>Enter Description</label>
+          <textarea
+            class="taskDesc"
+            placeholder="Enter Description about the Task"
+            required
+          ></textarea>
+        </div>
+        <div class="form-group">
+          <label>Date & Time</label>
+          <input class="dateTime" type="datetime-local" required />
+        </div>
+        <div class="actions">
+          <button class="btn cancel">Cancel</button>
+          <button class="btn submit">Submit</button>
+        </div>
+      </div>
+    </div>
+
+    <nav class="bottom-nav">
+      <a class="navList" href="index.html"><i class="fa-solid fa-house"></i>Home</a>
+      <button class="fab">+</button>
+      <a class="navList" href="/complete.html"
+        ><i class="fa-solid fa-list-ul"></i>All Task</a
+      >
+    </nav>
+<script src="common.js"></script>
+<script src="layout.js"></script>
+    <!-- <script src="script.js"></script> -->
+  </body>
+</html>
