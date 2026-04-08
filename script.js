@@ -126,7 +126,7 @@ tasksList.addEventListener("click", (e) => {
     taskCard.remove();
     updateTaskCount();
   }
-  
+
   // 👉 COMPLETE
   if (target.closest(".done-action")) {
     taskCard.querySelector(".task-name");
@@ -152,17 +152,6 @@ document.addEventListener("click", (e) => {
       .forEach((m) => m.classList.add("hidden-menu"));
   }
 });
-
-
-// const links = document.querySelectorAll(".navList");
-// const currentPage = window.location.pathname;
-
-// links.forEach(link => {
-//   if (link.href.includes(currentPage)) {
-//     link.classList.add("active");
-//   }
-// });
-
 
 // =============================================================================
 // service worker registration
