@@ -1,3 +1,8 @@
+// Get tasks from LocalStorage, or return an empty list if none exist
+const getSavedTasks = () => JSON.parse(localStorage.getItem("myTasks")) || [];
+
+// Save the current list of tasks to LocalStorage
+const saveTasksToStore = (tasks) => localStorage.setItem("myTasks", JSON.stringify(tasks));
 /* =============================================================================
    1. SELECTORS & GLOBAL VARIABLES
    ============================================================================= */
@@ -81,50 +86,71 @@ if (cancelBtn) cancelBtn.addEventListener("click", () => toggleModal(false));
    ============================================================================= */
 if (submitBtn) {
   submitBtn.addEventListener("click", () => {
-    // Validation: Ensure no empty fields
     if (!taskInp.value || !descInp.value || !dateInp.value) {
       alert("Please fill in all details");
       return;
     }
 
-    // Date Formatting (e.g., 27/06/2026, 09:00 am)
-    const dateObj = new Date(dateInp.value);
-    const formattedTime = new Intl.DateTimeFormat("en-GB", {
-      day: "2-digit",
-      month: "2-digit",
-      year: "numeric",
-      hour: "2-digit",
-      minute: "2-digit",
-      hour12: true,
-    }).format(dateObj);
-    // =============================================================================
-    // Create Task Element
-    // =============================================================================
+    // 1. Create a data object for the task
+    const newTask = {
+      id: Date.now(), // Unique ID for deleting/editing later
+      name: taskInp.value,
+      desc: descInp.value,
+      time: dateInp.value 
+    };
+
+    // 2. Add it to the existing list in LocalStorage
+    const allTasks = getSavedTasks();
+    allTasks.push(newTask);
+    saveTasksToStore(allTasks);
+
+    // 3. Close the modal
+    toggleModal(false);
+
+    // 4. IMPORTANT: Jump to the task page to see the result
+    window.location.href = "task.html"; 
+  });
+}
+// =============================================================================
+// render local storage
+// =============================================================================
+const renderTasks = () => {
+  if (!tasksList) return; // If the page doesn't have a list container, stop.
+
+  const tasks = getSavedTasks();
+  tasksList.innerHTML = ""; // Clear existing static/old tasks
+
+  tasks.forEach((task) => {
+    // Re-format the date for display
+    const formattedTime = new Date(task.time).toLocaleString("en-GB", {
+      day: "2-digit", month: "2-digit", year: "numeric",
+      hour: "2-digit", minute: "2-digit", hour12: true,
+    });
+
     const taskCard = document.createElement("div");
     taskCard.classList.add("task-card");
+    taskCard.setAttribute("data-id", task.id); // Store ID for delete action
+    
     taskCard.innerHTML = `
       <div class="task-left">
         <div>
-          <h4 class="task-name">${taskInp.value}</h4>
+          <h4 class="task-name">${task.name}</h4>
           <span class="task-time">Schedule ${formattedTime}</span>
-          <p class="task-decription">${descInp.value}</p>
+          <p class="task-decription">${task.desc}</p>
         </div>
       </div>
       <button class="task-menu">&#8942;</button>
       <div class="menubtn hidden-menu">
-        <button class="edit-action"><i class="fa-solid fa-pen"></i>Edit</button>
-        <button class="done-action"><i class="fa-regular fa-circle-check"></i>Complete</button>
         <button class="delete-action"><i class="fa-regular fa-trash" style="color:red;"></i>Delete</button>
       </div>`;
-
-    // Append to list and reset UI
-    if (tasksList) {
-      tasksList.appendChild(taskCard);
-      updateTaskCount();
-      toggleModal(false);
-    }
+    tasksList.appendChild(taskCard);
   });
-}
+  
+  updateTaskCount();
+};
+
+// Run this automatically when the script loads
+renderTasks();
 
 /* =============================================================================
    5. TASK OPERATIONS (EVENT DELEGATION)
@@ -153,9 +179,16 @@ if (tasksList) {
 
     // --- Action: Delete Task ---
     if (target.closest(".delete-action")) {
-      taskCard.remove();
-      updateTaskCount();
-    }
+    const taskId = Number(taskCard.getAttribute("data-id"));
+    let tasks = getSavedTasks();
+    
+    // Filter out the task with this ID
+    tasks = tasks.filter(t => t.id !== taskId);
+    
+    // Save the new list and refresh the screen
+    saveTasksToStore(tasks);
+    renderTasks(); 
+}
 
     // --- Action: Mark Complete ---
     if (target.closest(".done-action")) {

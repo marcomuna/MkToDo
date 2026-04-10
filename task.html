@@ -8,7 +8,7 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
     />
-    <link rel="icon" href="icons/icon.ico">
+    <link rel="icon" href="icons/icon.ico" />
     <link rel="stylesheet" href="style.css" />
     <style>
       .head {
@@ -22,10 +22,13 @@
         background-color: #060e20;
         z-index: 20;
       }
-      #filter{
+      #filter {
         background-color: #060e20;
         border: none;
         color: white;
+      }
+      h1 {
+        margin: 10px 0;
       }
     </style>
   </head>
@@ -41,8 +44,15 @@
     </nav>
     <main>
       <div class="head">
+        <div class="head-container">
           <h1>All Tasks</h1>
-          <select name="filter" id="filter">
+
+          <p class="page-subtitle">
+            You have Total <span class="taskNo">0</span> tasks.
+          </p>
+        </div>
+
+        <select name="filter" id="filter">
           <option value="all">All</option>
           <option value="completed">Completed</option>
           <option value="pending">Pending</option>
@@ -50,131 +60,6 @@
         </select>
       </div>
       <div class="tasks-list">
-        <div class="task-card">
-          <div class="task-left">
-            <div>
-              <h4 class="task-name">Date of Birth</h4>
-              <span class="task-time">Schedule 08/07/2004 - 00:00 am</span>
-              <p class="task-decription">
-                elit. Minus doloremque dolore at! ia autem quas id natus sunt
-                totam voluptatum placeat sequi dolor?
-              </p>
-            </div>
-          </div>
-          <button class="task-menu">&#8942;</button>
-
-          <div class="menubtn hidden-menu">
-            <button class="edit-action">
-              <i class="fa-solid fa-pen"></i>Edit
-            </button>
-            <button class="done-action">
-              <i class="fa-regular fa-circle-check"></i>Complete
-            </button>
-            <button class="delete-action">
-              <i class="fa-regular fa-trash"></i>Delete
-            </button>
-          </div>
-        </div>
-        <div class="task-card">
-          <div class="task-left">
-            <div>
-              <h4 class="task-name">Date of Birth</h4>
-              <span class="task-time">Schedule 08/07/2004 - 00:00 am</span>
-              <p class="task-decription">
-                elit. Minus doloremque dolore at! ia autem quas id natus sunt
-                totam voluptatum placeat sequi dolor?
-              </p>
-            </div>
-          </div>
-          <button class="task-menu">&#8942;</button>
-
-          <div class="menubtn hidden-menu">
-            <button class="edit-action">
-              <i class="fa-solid fa-pen"></i>Edit
-            </button>
-            <button class="done-action">
-              <i class="fa-regular fa-circle-check"></i>Complete
-            </button>
-            <button class="delete-action">
-              <i class="fa-regular fa-trash"></i>Delete
-            </button>
-          </div>
-        </div>
-        <div class="task-card">
-          <div class="task-left">
-            <div>
-              <h4 class="task-name">Date of Birth</h4>
-              <span class="task-time">Schedule 08/07/2004 - 00:00 am</span>
-              <p class="task-decription">
-                elit. Minus doloremque dolore at! ia autem quas id natus sunt
-                totam voluptatum placeat sequi dolor?
-              </p>
-            </div>
-          </div>
-          <button class="task-menu">&#8942;</button>
-
-          <div class="menubtn hidden-menu">
-            <button class="edit-action">
-              <i class="fa-solid fa-pen"></i>Edit
-            </button>
-            <button class="done-action">
-              <i class="fa-regular fa-circle-check"></i>Complete
-            </button>
-            <button class="delete-action">
-              <i class="fa-regular fa-trash"></i>Delete
-            </button>
-          </div>
-        </div>
-        <div class="task-card">
-          <div class="task-left">
-            <div>
-              <h4 class="task-name">Date of Birth</h4>
-              <span class="task-time">Schedule 08/07/2004 - 00:00 am</span>
-              <p class="task-decription">
-                elit. Minus doloremque dolore at! ia autem quas id natus sunt
-                totam voluptatum placeat sequi dolor?
-              </p>
-            </div>
-          </div>
-          <button class="task-menu">&#8942;</button>
-
-          <div class="menubtn hidden-menu">
-            <button class="edit-action">
-              <i class="fa-solid fa-pen"></i>Edit
-            </button>
-            <button class="done-action">
-              <i class="fa-regular fa-circle-check"></i>Complete
-            </button>
-            <button class="delete-action">
-              <i class="fa-regular fa-trash"></i>Delete
-            </button>
-          </div>
-        </div>
-        <div class="task-card">
-          <div class="task-left">
-            <div>
-              <h4 class="task-name">Date of Birth</h4>
-              <span class="task-time">Schedule 08/07/2004 - 00:00 am</span>
-              <p class="task-decription">
-                elit. Minus doloremque dolore at! ia autem quas id natus sunt
-                totam voluptatum placeat sequi dolor?
-              </p>
-            </div>
-          </div>
-          <button class="task-menu">&#8942;</button>
-
-          <div class="menubtn hidden-menu">
-            <button class="edit-action">
-              <i class="fa-solid fa-pen"></i>Edit
-            </button>
-            <button class="done-action">
-              <i class="fa-regular fa-circle-check"></i>Complete
-            </button>
-            <button class="delete-action">
-              <i class="fa-regular fa-trash"></i>Delete
-            </button>
-          </div>
-        </div>
         <div class="task-card">
           <div class="task-left">
             <div>
