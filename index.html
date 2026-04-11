@@ -22,15 +22,15 @@
   </head>
 
   <body>
-    <nav class="navbar">
-      <span class="logo">MunA.Do</span>
-      <div class="navbar-right">
-        <i
-          class="fa-solid fa-circle-user"
-          style="color: rgb(255, 255, 255); font-size: 1.5rem"
-        ></i>
-      </div>
+   <nav class="navbar">
+  <img src="/icons/logo.png" alt="logo" width="100px">
+
+  <div class="navbar-right">
+    <div class="avatar" id="profileBtn">M</div>
+  </div>
+</nav>
     </nav>
+
 
     <aside class="sidebar">
       <div>
@@ -66,7 +66,7 @@
       <header class="page-header">
         <h1 class="page-title">Good morning, MunA.</h1>
         <p class="page-subtitle">
-          You have <span class="taskNo">0</span> tasks scheduled for today.
+          You have <span class="taskNo">No</span> tasks scheduled for today.
         </p>
         <div class="steps-container"></div>
       </header>
@@ -184,6 +184,27 @@
         </div>
       </div>
     </div>
+    <!-- ================= PROFILE MODAL ================= -->
+<div class="overlay profile-overlay hidden">
+  <div class="modal">
+    <h2>Profile</h2>
+
+    <div class="form-group">
+      <label>Your Name</label>
+      <input type="text" class="profile-name" placeholder="Enter your name" />
+    </div>
+
+    <div class="form-group">
+      <label>Upload Profile Image</label>
+      <input type="file" class="profile-img" accept="image/*" />
+    </div>
+
+    <div class="actions">
+      <button class="btn cancel-profile">Cancel</button>
+      <button class="btn save-profile">Save</button>
+    </div>
+  </div>
+</div>
     <!-- ======================================================================= -->
     <!-- Mobile Navigation -->
     <!-- ======================================================================= -->

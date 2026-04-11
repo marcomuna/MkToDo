@@ -424,6 +424,108 @@ if (filterEl) {
 renderTasks();
 
 // =============================================================================
+// user logo section
+// =============================================================================
+// ================= USER NAME SYSTEM =================
+
+// ================= PROFILE SYSTEM =================
+
+const profileOverlay = document.querySelector(".profile-overlay");
+const profileBtn = document.getElementById("profileBtn");
+const saveProfileBtn = document.querySelector(".save-profile");
+const cancelProfileBtn = document.querySelector(".cancel-profile");
+
+const profileNameInput = document.querySelector(".profile-name");
+const profileImgInput = document.querySelector(".profile-img");
+
+// OPEN MODAL
+if (profileBtn) {
+  profileBtn.addEventListener("click", () => {
+    profileOverlay.classList.add("visible");
+  });
+}
+
+// CLOSE MODAL
+if (cancelProfileBtn) {
+  cancelProfileBtn.addEventListener("click", () => {
+    profileOverlay.classList.remove("visible");
+  });
+}
+
+// SAVE PROFILE
+if (saveProfileBtn) {
+  saveProfileBtn.addEventListener("click", () => {
+    const name = profileNameInput.value;
+
+    if (!name) {
+      alert("Enter your name");
+      return;
+    }
+
+    localStorage.setItem("userName", name);
+
+    const file = profileImgInput.files[0];
+
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = function () {
+        localStorage.setItem("userImage", reader.result);
+        loadProfile();
+      };
+      reader.readAsDataURL(file);
+    } else {
+      loadProfile();
+    }
+
+    profileOverlay.classList.remove("visible");
+  });
+}
+
+// LOAD PROFILE
+const loadProfile = () => {
+  const name = localStorage.getItem("userName");
+  const img = localStorage.getItem("userImage");
+
+  if (!profileBtn) return;
+
+  if (img) {
+    profileBtn.innerHTML = `<img src="${img}" />`;
+  } else if (name) {
+    profileBtn.innerText = name.charAt(0).toUpperCase();
+  }
+
+  updateGreeting();
+};
+
+// FIRST TIME AUTO OPEN
+window.addEventListener("load", () => {
+  const name = localStorage.getItem("userName");
+
+  if (!name) {
+    profileOverlay.classList.add("visible");
+  }
+
+  loadProfile();
+});
+
+const updateGreeting = () => {
+  const name = localStorage.getItem("userName") || "User";
+  const hour = new Date().getHours();
+
+  let greeting = "Hello";
+
+  if (hour < 12) greeting = "Good morning";
+  else if (hour < 17) greeting = "Good afternoon";
+  else if (hour < 21) greeting = "Good evening";
+  else greeting = "Good night";
+
+  const title = document.querySelector(".page-title");
+
+  if (title) {
+    title.innerText = `${greeting}, ${name}.`;
+  }
+};
+// =============================================================================
 // Service worker
 // =============================================================================
 if ("serviceWorker" in navigator) {

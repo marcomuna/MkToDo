@@ -1,148 +1,176 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#060e20" />
-<meta name="background-color" content="#060e20" />
-<meta name="apple-mobile-web-app-capable" content="yes" />
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-<title>MunA.Do</title>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#060e20" />
+    <meta name="background-color" content="#060e20" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta
+      name="apple-mobile-web-app-status-bar-style"
+      content="black-translucent"
+    />
+    <title>MunA.Do</title>
 
-<style>
-  body {
-    margin: 0;
-    height: 100vh;
-    background: radial-gradient(circle at top, #0b1b3a, #060e20);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-family: "Inter", sans-serif;
-    color: white;
-    overflow: hidden;
-  }
+    <style>
+      body {
+        margin: 0;
+        height: 100vh;
+        background: radial-gradient(circle at top, #0b1b3a, #060e20);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-family: "Inter", sans-serif;
+        color: white;
+        overflow: hidden;
+      }
 
-  .container {
-    text-align: center;
-    animation: fadeIn 1.5s ease-in-out;
-  }
+      .container {
+        text-align: center;
+        animation: fadeIn 1.5s ease-in-out;
+      }
 
-  /* LOGO */
-  .logo {
-    width: 100px;
-    height: 100px;
-    border-radius: 24px;
-    background: linear-gradient(135deg, #00e5ff, #4caf50);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: auto;
-    font-size: 40px;
-    font-weight: bold;
-    color: black;
-    animation: pop 1s ease;
-  }
+      /* LOGO */
+      .logo {
+        width: 100px;
+        height: 100px;
+        border-radius: 24px;
+        background: linear-gradient(135deg, #00e5ff, #4caf50);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: auto;
+        font-size: 40px;
+        font-weight: bold;
+        color: black;
+        animation: pop 1s ease;
+      }
 
-  /* APP NAME */
-  .title {
-    font-size: 2.5rem;
-    margin-top: 20px;
-    font-weight: 800;
-    letter-spacing: -1px;
-  }
+      /* APP NAME */
+      .title {
+        font-size: 2.5rem;
+        margin-top: 20px;
+        font-weight: 800;
+        letter-spacing: -1px;
+      }
 
-  .title span {
-    color: #00e5ff;
-  }
+      .title span {
+        color: #00e5ff;
+      }
 
-  /* TAGLINE */
-  .tagline {
-    margin-top: 10px;
-    font-size: 1rem;
-    opacity: 0.7;
-  }
+      /* TAGLINE */
+      .tagline {
+        margin-top: 10px;
+        font-size: 1rem;
+        opacity: 0.7;
+      }
 
-  /* LOADING BAR */
-  .loader {
-    margin-top: 30px;
-    width: 200px;
-    height: 4px;
-    background: rgba(255,255,255,0.1);
-    border-radius: 10px;
-    overflow: hidden;
-    margin-left: auto;
-    margin-right: auto;
-  }
+      /* LOADING BAR */
+      .loader {
+        margin-top: 30px;
+        width: 200px;
+        height: 4px;
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 10px;
+        overflow: hidden;
+        margin-left: auto;
+        margin-right: auto;
+      }
 
-  .loader-bar {
-  height: 100%;
-  width: 0%;
-  background: linear-gradient(90deg, #00e5ff, #4caf50);
-  animation: load 2s ease forwards, glow 1s infinite alternate;
-}
+      .loader-bar {
+        height: 100%;
+        width: 0%;
+        background: linear-gradient(90deg, #00e5ff, #4caf50);
+        animation:
+          load 2s ease forwards,
+          glow 1s infinite alternate;
+      }
 
-@keyframes glow {
-  from { box-shadow: 0 0 5px #00e5ff; }
-  to { box-shadow: 0 0 20px #00e5ff; }
-}
+      @keyframes glow {
+        from {
+          box-shadow: 0 0 5px #00e5ff;
+        }
+        to {
+          box-shadow: 0 0 20px #00e5ff;
+        }
+      }
 
-  /* ANIMATIONS */
-  @keyframes pop {
-    0% { transform: scale(0); }
-    70% { transform: scale(1.1); }
-    100% { transform: scale(1); }
-  }
+      /* ANIMATIONS */
+      @keyframes pop {
+        0% {
+          transform: scale(0);
+        }
+        70% {
+          transform: scale(1.1);
+        }
+        100% {
+          transform: scale(1);
+        }
+      }
 
-  @keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
-  }
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
 
-  @keyframes load {
-    from { width: 0%; }
-    to { width: 100%; }
-  }
+      @keyframes load {
+        from {
+          width: 0%;
+        }
+        to {
+          width: 100%;
+        }
+      }
 
-  .logo {
-  animation: pop 1s ease, float 3s ease-in-out infinite;
-}
+      .logo {
+        animation:
+          pop 1s ease,
+          float 3s ease-in-out infinite;
+      }
 
-@keyframes float {
-  0% { transform: translateY(0px); }
-  50% { transform: translateY(-10px); }
-  100% { transform: translateY(0px); }
-}
+      @keyframes float {
+        0% {
+          transform: translateY(0px);
+        }
+        50% {
+          transform: translateY(-10px);
+        }
+        100% {
+          transform: translateY(0px);
+        }
+      }
+    </style>
+  </head>
 
-</style>
-</head>
+  <body>
+    <div class="container">
+      <div class="logo">✓</div>
+      <div class="title">MunA.<span>Do</span></div>
+      <div class="tagline">Organize Your Day Efficiently</div>
 
-<body>
+      <div class="loader">
+        <div class="loader-bar"></div>
+      </div>
+    </div>
 
-<div class="container">
-  <div class="logo">✓</div>
-  <div class="title">MunA.<span>Do</span></div>
-  <div class="tagline">Organize Your Day Efficiently</div>
+    <script>
+      // Redirect after animation
+      setTimeout(() => {
+        window.location.href = "index.html";
+      }, 2600);
 
-  <div class="loader">
-    <div class="loader-bar"></div>
-  </div>
-</div>
+      setTimeout(() => {
+        document.body.style.opacity = "0";
+        document.body.style.transition = "0.5s";
 
-<script>
-  // Redirect after animation
-  setTimeout(() => {
-    window.location.href = "index.html";
-  }, 2600);
-
-  setTimeout(() => {
-  document.body.style.opacity = "0";
-  document.body.style.transition = "0.5s";
-
-  setTimeout(() => {
-    window.location.href = "index.html";
-  }, 500);
-}, 2000);
-</script>
-
-</body>
+        setTimeout(() => {
+          window.location.href = "index.html";
+        }, 500);
+      }, 2000);
+    </script>
+  </body>
 </html>
