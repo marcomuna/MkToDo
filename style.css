@@ -321,19 +321,33 @@ main {
 }
 
 /* !done logic  */
-.done{
-  opacity: 0.5;
-  color: black;
-  background-color: greenyellow;
+.done {
+  background: rgba(110, 255, 144, 0.2);
+  border: 1px solid rgba(110, 255, 144, 0.6);
+  color: #4caf50;
+  opacity: 0.8;
 }
-.done::before{
-  content: "Task Completed";
-  color: blue;
-  font-size: 2rem;
-  text-align: center;
-  margin: auto;
-  position: absolute;
-  z-index: 100;
+.completed-text {
+  color: #4caf50;
+  font-size: 0.8rem;
+  margin-left: 5px;
+}
+
+.expired {
+  background: rgba(255, 110, 132, 0.2);
+  border: 1px solid rgba(255, 110, 132, 0.6);
+  color: #ff6e84;
+  opacity: 0.8;
+}
+.expired-text {
+  color: #ff6e84;
+  font-size: 0.8rem;
+  margin-left: 5px;
+}
+.pending-text {
+  color: #4da6ff;
+  font-size: 0.8rem;
+  margin-left: 5px;
 }
 /* ========================================================================== */
 /* 6. ASIDE PANEL (QUICK ACTIONS & UPCOMING) */
@@ -343,7 +357,7 @@ main {
   flex-direction: column;
   gap: 2rem;
 }
-.panel-title{
+.panel-title {
   margin-bottom: 20px;
 }
 .glass-panel {
@@ -395,7 +409,7 @@ main {
   gap: 0.75rem;
   margin-bottom: 5rem;
 }
-.upcoming-title{
+.upcoming-title {
   margin-bottom: 20px;
 }
 .upcoming-card {
@@ -565,4 +579,43 @@ textarea {
   color: var(--on-primary-fixed);
   margin-top: -3rem;
   font-size: 2rem;
+}
+
+
+
+ /* for task page progress bar  */
+.progress-container {
+  width: 100%;
+  height: 8px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  margin-top: 10px;
+  overflow: hidden;
+}
+
+.progress-bar {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, #4caf50, #00e676);
+  border-radius: 10px;
+  transition: width 0.4s ease;
+}
+
+/* for hame page progress bar  */
+.steps-container {
+  display: flex;
+  gap: 6px;
+  margin-top: 10px;
+  flex-wrap: wrap;
+}
+
+.step-box {
+  width: 14px;
+  height: 14px;
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.step-box.completed {
+  background: #4caf50;
 }

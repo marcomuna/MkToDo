@@ -3,6 +3,10 @@
   <head>
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <meta name="theme-color" content="#060e20" />
+<meta name="background-color" content="#060e20" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
     <title>MunA.ToDo</title>
     <link
       href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;700;800&family=Inter:wght@400;500;600&display=swap"
@@ -64,6 +68,7 @@
         <p class="page-subtitle">
           You have <span class="taskNo">0</span> tasks scheduled for today.
         </p>
+        <div class="steps-container"></div>
       </header>
 
       <div class="content-grid">
@@ -114,12 +119,12 @@
         <aside class="aside-panel">
           <div class="glass-panel">
             <h3 class="panel-title">Quick Actions</h3>
-            <div class="quick-grid">
-              <button class="quick-btn focus-btn">
+            <div class="quick-grid" >
+              <button class="quick-btn focus-btn" data-filter="completed">
                 <i class="fa-regular fa-clock"></i>
                 <span class="label">Completed</span>
               </button>
-              <button class="quick-btn stats-btn">
+              <button class="quick-btn stats-btn" data-filter="expired">
                 <i class="fa-solid fa-list-ul"></i>
                 <span class="label">Expired</span>
               </button>
