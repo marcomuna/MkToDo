@@ -37,6 +37,21 @@ const updateUI = () => {
       day: "numeric",
     });
   }
+  
+  // FIX: Count the actual cards rendered on the screen, not the total storage
+  if (taskCountDisplay && tasksList) {
+    taskCountDisplay.innerText = tasksList.querySelectorAll(".task-card").length;
+  }
+};
+const homeUpdateUI = () => {
+  const homeTaskCount = document.querySelector(".taskNo"); 
+  const now = new Date();
+  if (homeTaskCount) {
+    homeTaskCount.innerText = now.toLocaleDateString("en-US", {
+      month: "long",
+      day: "numeric",
+    });
+  }
 
   if (taskCountDisplay) {
     taskCountDisplay.innerText = getSavedTasks().length;
@@ -106,26 +121,41 @@ if (submitBtn) {
 /* =============================================================================
    5. RENDER TASKS
    ============================================================================= */
+/* =============================================================================
+   5. RENDER TASKS
+   ============================================================================= */
 const renderTasks = () => {
-  if (!tasksList) return;
+  if (!tasksList) return; 
 
-  const tasks = getSavedTasks();
-  tasksList.innerHTML = ""; // Clear list
+  let tasks = getSavedTasks();
+  
+  // 1. Check which page we are on
+  // If the '#filter' element does NOT exist, we are on index.html
+  const isAllTasksPage = document.querySelector("#filter") !== null;
 
+  // 2. Filter logic for index.html (Home Page)
+  if (!isAllTasksPage) {
+    const todayString = new Date().toDateString(); // Gets current date like "Sat Apr 11 2026"
+    
+    // Keep only the tasks where the task's date matches today's date
+    tasks = tasks.filter((task) => {
+      const taskDateString = new Date(task.time).toDateString();
+      return taskDateString === todayString;
+    });
+  }
+
+  tasksList.innerHTML = ""; // Clear list before rendering
+
+  // 3. Render the filtered (or unfiltered) tasks
   tasks.forEach((task) => {
     const formattedTime = new Date(task.time).toLocaleString("en-GB", {
-      day: "2-digit",
-      month: "2-digit",
-      year: "numeric",
-      hour: "2-digit",
-      minute: "2-digit",
-      hour12: true,
+      day: "2-digit", month: "2-digit", year: "numeric",
+      hour: "2-digit", minute: "2-digit", hour12: true,
     });
 
     const taskCard = document.createElement("div");
     taskCard.classList.add("task-card");
-    // Add 'done' class if task is completed
-    if (task.completed) taskCard.classList.add("done");
+    if (task.completed) taskCard.classList.add("done"); 
     taskCard.setAttribute("data-id", task.id);
 
     taskCard.innerHTML = `
@@ -139,14 +169,15 @@ const renderTasks = () => {
       <button class="task-menu">&#8942;</button>
       <div class="menubtn hidden-menu">
         <button class="edit-action"><i class="fa-solid fa-pen"></i>Edit</button>
-        <button class="done-action"><i class="fa-regular fa-circle-check"></i>${task.completed ? "Undo" : "Complete"}</button>
+        <button class="done-action"><i class="fa-regular fa-circle-check"></i>${task.completed ? 'Undo' : 'Complete'}</button>
         <button class="delete-action"><i class="fa-regular fa-trash"></i>Delete</button>
       </div>`;
-
+    
     tasksList.appendChild(taskCard);
   });
 
   updateUI();
+  homeUpdateUI();
 };
 
 /* =============================================================================
